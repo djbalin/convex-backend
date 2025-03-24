@@ -13,7 +13,7 @@ export default function App() {
   // @snippet start sendMessageHook
   const sendMessage = useMutation(api.messages.send);
   // @snippet end sendMessageHook
-
+  const testUnique = useMutation(api.messages.testUnique);
   const [name] = useState(() => "User " + Math.floor(Math.random() * 10000));
   async function handleSendMessage(event: FormEvent) {
     event.preventDefault();
@@ -22,6 +22,8 @@ export default function App() {
   }
   // @snippet end sendMessage
   // @snippet end listMessages
+  const getAll = useQuery(api.messages.getAll);
+  console.log(getAll);
   return (
     <main>
       <h1>Convex Chat</h1>
@@ -38,6 +40,7 @@ export default function App() {
           </li>
         ))}
       </ul>
+      <button onClick={() => testUnique()}>Test Unique</button>
       {/* @snippet end renderMessages */}
       <form onSubmit={handleSendMessage}>
         <input

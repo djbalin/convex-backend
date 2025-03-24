@@ -165,6 +165,7 @@ export class QueryImpl implements Query<GenericTableInfo> {
     | { type: "closed" }
     | { type: "consumed" };
 
+
   constructor(query: SerializedQuery) {
     this.state = { type: "preparing", query };
   }
@@ -326,7 +327,7 @@ export class QueryImpl implements Query<GenericTableInfo> {
       return null;
     }
     if (first_two_array.length === 2) {
-      throw new Error(`unique() query returned more than one result: 
+      throw new Error(`unique() query returned more than one result from table "${first_two_array[0].__tableName}": 
  [${first_two_array[0]._id}, ${first_two_array[1]._id}, ...]`);
     }
     return first_two_array[0];

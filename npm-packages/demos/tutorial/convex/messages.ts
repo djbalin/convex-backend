@@ -18,3 +18,17 @@ export const send = mutation({
   },
 });
 // @snippet end send
+
+export const testUnique = mutation({
+  handler: async (ctx) => {
+    const messages = await ctx.db.query("messages").unique()
+    return messages.length;
+  },
+});
+
+export const getAll = query({
+  handler: async (ctx) => {
+    return await ctx.db.query("messages").collect();
+  },
+});
+
